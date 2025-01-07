@@ -4,16 +4,18 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Console.WriteLine("Hello World! This is the Exercise5 Project.");
+        Console.WriteLine("Hello World! This is the Exercise5 Project.");
         DisplayMessage();
-        // PromptUserName();
-        // PromptUserNumb
+        string name = PromptUserName();
+        int number = PromptUserNumber();
+        int squaredNumber = SquareNumber(number);
+        DisplayResult(name, squaredNumber);
         
     }
     static void DisplayMessage()
-{
-    Console.WriteLine("Welcome to the program!");
-}
+    {
+        Console.WriteLine("Welcome to the program!");
+    }
     static string PromptUserName()
     {
         Console.Write("Please enter your name: ");
@@ -23,18 +25,17 @@ class Program
     static int PromptUserNumber()
     {
         Console.Write("Please enter your favorite number: ");
-        string number = Console.ReadLine();
-        int favoriteNumber = int.Parse(number);
+        int favoriteNumber = int.Parse(Console.ReadLine());
         return favoriteNumber;
     }
-    static int SquareNumber(favoriteNumber)
+    static int SquareNumber(int favoriteNumber)
     {
-        int favoriteNumber = PromptUserNumber() * PromptUserNumber();
-        return favoriteNumber;
+        int square = favoriteNumber * favoriteNumber;
+        return square;
     }
-    static string DisplayResult()
+    static void DisplayResult(string name, int squaredNumber)
     {
-        return $"{PromptUserName()}, the square of your number is {SquareNumber()}";
+        Console.WriteLine($"{name}, the square of your number is {squaredNumber}");
     }
 }
 
