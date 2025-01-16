@@ -5,8 +5,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Console.WriteLine("Hello World! This is the Journal Project.");
-        Journal theJournal = new Journal();
+        Console.WriteLine("Hello World! This is the Journal Project.");
         string exit = "no";
         while (exit != "yes")
         {
@@ -17,19 +16,22 @@ class Program
             {
                 Entry newEntry = new Entry();
                 newEntry.Display();
-                string userInput = Console.ReadLine();
             }
             else if (choice == "2")
             {
-
+                Journal.DisplayAll();
             }
             else if (choice == "3")
             {
-
+                Console.WriteLine("What is the filename?");
+                string fileName = Console.ReadLine();
+                Journal.LoadFromFile(fileName);
             }
             else if (choice == "4")
             {
-
+                Console.WriteLine("What is the filename?");
+                string fileName = Console.ReadLine();
+                Journal.SaveToFile(fileName);
             }
             else if (choice == "5")
             {
@@ -40,10 +42,5 @@ class Program
                 Console.WriteLine("Invalid choice. Please try again.\n");
             }
         }
-
-        // PromptGenerator promptGenerator = new PromptGenerator();
-        // Console.WriteLine(promptGenerator.GetRandomPrompt());
-        // Console.WriteLine(promptGenerator.GetRandomPrompt());
-        // Console.WriteLine(promptGenerator.GetRandomPrompt());
     }
 }

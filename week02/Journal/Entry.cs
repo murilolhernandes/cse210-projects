@@ -1,17 +1,21 @@
 public class Entry
 {
-  public static string _date;
-  // PromptGenerator promptGenerator = new PromptGenerator();
-  public static string _promptText = PromptGenerator.GetRandomPrompt();
-  public static string _entryText;
-  // public static string anEntry = $"{_date} {_promptText}: {_entryText}";
-
+  public string _date;
+  public string _promptText;
+  public string _entryText;
 
   public void Display()
   {
-    // _promptText = PromptGenerator.GetRandomPrompt();
+    _promptText = PromptGenerator.GetRandomPrompt();
     Console.WriteLine(_promptText);
-    // _entryText = Console.ReadLine();
-    // Console.WriteLine($"You entered: {_entryText}");
+
+    _entryText = Console.ReadLine();
+
+    _date = DateTime.Now.ToString("MM/dd/yyyy");
+
+    Entry anEntry = new Entry();
+    anEntry._entryText = $"Date: {_date} - Prompt: {_promptText}\n{_entryText}";
+
+    Journal.AddEntry(anEntry);
   }
 }
