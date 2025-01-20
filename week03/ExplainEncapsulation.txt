@@ -1,0 +1,47 @@
+The definition of "encapsulation" is to enclose something, to capture and put it in a capsule, where it will become sealed to the outer world. It's generally used in the software developing world as "access modifiers", where it is defined the access of a class member.
+
+The main reason for developers to choose between "private" and "public" is to allow or restrict the access of a member variable, or method. If a member variable is defined as "public", it can accessed or modified by any line of code inside or outside of that class. However, if it is defined as "private", only local variables and local methods have access to modify or access its values.
+
+To prevent mistakes and errors, it is widely accepted that class members should only be defined as "public" when needed to be accessed from outside of its class, otherwise they should be defined as "private".
+
+A benefit of using the principle of encapsulation is to refine your abilities in building appropriate behaviors for classes and methods, which in turn will internally take care of the details needed. Through practice your objects will become more purposeful and more understandable.
+
+An example can be found in this week's learning activity: Fractions. We built a class named Fraction that contains several methods that each perform one task, they build on each other and the main program only needs to call the last two methods ("GetFractionString()" and "GetDecimalValue()"). See an example of the local members of the Fraction class and note that the local variables are defined as "private", but the methods are defined as "public" so they can accessed from outside of the class.
+
+public class Fraction
+{
+  *private* int _top;
+  *private* int _bottom;
+
+   *public* Fraction (int top, int bottom)
+  {
+    _top = top;
+    _bottom = bottom;
+  }
+
+  *public* string GetFractionString ()
+  {
+    string text = $"{_top}/{_bottom}";
+    return text;
+  }
+
+  *public* double GetDecimalValue ()
+  {
+    return (double)_top / (double)_bottom;
+  }
+}
+
+
+Now notice how the main program only needs to call two methods once the parameters are entered:
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Hello World! This is the Fractions Project.");
+
+        Fraction fraction4 = new Fraction(1, 3);
+        Console.WriteLine(fraction4.GetFractionString());
+        Console.WriteLine(fraction4.GetDecimalValue());
+    }
+}
