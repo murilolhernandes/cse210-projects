@@ -1,5 +1,5 @@
-// As an additional function to my project, I added an extra step to method HideRandomWords under the Scripture class. This step is to make sure that the words 
-// are won't be replaced twice as the user presses enter. It also guarantees that every time the user presses enter, 3 new words will be hidden,
+// As an additional function to my project, I added an extra step to the method HideRandomWords under the Scripture class. This step ensures that the words 
+// won't be replaced twice as the user presses enter. It also guarantees that every time the user presses enter, 3 new words will be hidden,
 // so there won't be a single time where the user will press enter and only one, two or no word will be hidden, but 3 words that weren't hidden before
 // will be hidden until all the words are hidden, then the program will be terminated.
 
