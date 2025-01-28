@@ -1,9 +1,9 @@
-public class Costumer
+public class Custumer
 {
   private string _name;
   private Address _address;
 
-  public Costumer(string name, string streetName, string city, string state, int zipCode, string country)
+  public Custumer(string name, string streetName, string city, string state, int zipCode, string country)
   {
     _name = name;
     _address = new Address(streetName, city, state, zipCode, country);
@@ -12,9 +12,8 @@ public class Costumer
   {
     return _address.IsInUSA();  
   }
-  public void DisplayCostumerInfo()
+  public string DisplayCostumerInfo()
   {
-    Console.WriteLine($"Name: {_name}");
-    Console.WriteLine($"Address: {_address.AddressString()}");
+    return $"Name: {_name}\nAddress: {_address.AddressString()}";
   }
 }

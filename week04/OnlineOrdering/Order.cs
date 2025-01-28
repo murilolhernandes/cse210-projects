@@ -1,41 +1,51 @@
 public class Order
 {
   private List<Product> _products = new List<Product>();
-  private Product _product;
-  private Costumer _costumer;
+  private Custumer _costumer;
 
-  public Order(Costumer costumer, Product product)
+  public Order(Custumer costumer)
   {
-    _product = product;
-    _products.Add(_product);
+
     _costumer = costumer;
+  }
+  public void GetProduct(Product product)
+  {
+    _products.Add(product);
   }
   public double TotalCost()
   {
-    double cost = _product.ProductCost();
-    double totalCost;
+    double totalCost = 0;
+    foreach (Product product in _products)
+    {
+      totalCost += product.ProductCost();
+    }
     if (_costumer.IsInUSA())
     {
-      totalCost = cost + 5;
+      totalCost += 5;
     }
     else
     {
-      totalCost = cost + 35;
+      totalCost += 35;
     }
     return totalCost;
   }
-  public void DisplayPackingLabel()
+  public string DisplayPackingLabel()
   {
-    _product.DisplayProductInfo();
+    string packingLabel = "";
+    foreach (Product product in _products)
+    {
+      packingLabel += $"{product.DisplayProductInfo()}\n";
+    }
+    return packingLabel;
   }
-  public void DisplayShippingLabel()
+  public string DisplayShippingLabel()
   {
-    _costumer.DisplayCostumerInfo();
+    return _costumer.DisplayCostumerInfo();
   }
   public void DisplayOrderInfo()
   {
-    _costumer.DisplayCostumerInfo();
-    _product.DisplayProductInfo();
+    Console.WriteLine(DisplayPackingLabel());
+    Console.WriteLine(DisplayShippingLabel());
     Console.WriteLine($"Total Cost: ${Math.Round(TotalCost(), 2)}");
   }
 }

@@ -17,13 +17,8 @@ public class Address
 
   public string AddressString()
   {
-    string address = $"{_streetAddress},\n{_city}, {_state}, {_zipCode}, {_country}";
-    return address;
+    return $"{_streetAddress},\n{_city}, {_state}, {_zipCode}, {_country}";
   }
-  // public void DisplayAddressInfo()
-  // {
-  //   Console.WriteLine($"Address: {_streetAddress}, {_city}, {_state}, {_zipCode}, {_country}");
-  // }
   public bool IsInUSA()
   {
     if (_country == "USA")

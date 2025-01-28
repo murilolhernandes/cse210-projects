@@ -14,11 +14,11 @@ public class Product
   }
   public double ProductCost()
   {
-    double cost = _productPrice * _productQuantity;
-    return cost;
+    return _productPrice * _productQuantity;
   }
-  public void DisplayProductInfo()
+  public string DisplayProductInfo()
   {
-    Console.WriteLine($"Name: {_productName}, ID: {_productId}, Price: ${Math.Round(_productPrice, 2)}, Quantity: {_productQuantity}\nCost: ${Math.Round(ProductCost(), 2)}");
+    string productInfo = $"Name: {_productName}, ID: {_productId}, Price: ${Math.Round(_productPrice, 2)}, Quantity: {_productQuantity}\nCost: ${Math.Round(ProductCost(), 2)}";
+    return productInfo;
   }
 }
