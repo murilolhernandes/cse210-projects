@@ -1,11 +1,10 @@
 public class Order
 {
   private List<Product> _products = new List<Product>();
-  private Custumer _costumer;
+  private Customer _costumer;
 
-  public Order(Custumer costumer)
-  {
-
+  public Order(Customer costumer)
+  { 
     _costumer = costumer;
   }
   public void GetProduct(Product product)

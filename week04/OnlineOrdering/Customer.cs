@@ -1,9 +1,9 @@
-public class Custumer
+public class Customer
 {
   private string _name;
   private Address _address;
 
-  public Custumer(string name, string streetName, string city, string state, int zipCode, string country)
+  public Customer(string name, string streetName, string city, string state, int zipCode, string country)
   {
     _name = name;
     _address = new Address(streetName, city, state, zipCode, country);
