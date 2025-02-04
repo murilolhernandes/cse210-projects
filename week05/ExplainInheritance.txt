@@ -1,0 +1,59 @@
+The definition of "inheritance" is to receive a quality from parent to offspring. In the programming language it means to inherit, or to receive the conditions or values from a parent class. We call a super or base class the parent class, and derived or sub class for the child class that will inherit the values, conditions and methods from the parent class.
+
+We use inheritance in order to avoid repeating code that has been declared and is applicable for the program we are building. The learning activity gave us the example of a program where the user can enter the title of a book, the author, and if applicable, the illustrator, and print it to the console. The classes given are `Book`, and `PictureBook`. Inside of the `Book` class there are member variables and local variables for the constructors and methods, whereas inside of the `PictureBook` class there are also member variables and local variables for the constructors and methods, however, this class doesn't repeat any variable contained in its parent class `Book`. By avoiding duplicate variables and methods, we can reduce the amount of code we write and making cleaner and easier programs to use, code, and debug.
+
+A benefit we have of using this principle is the ability of creating object instances from within objects. As an example I will share a snippet from this week's learning activity:  inside of the Assignment class, which is the base class, we have two member variables: `_studentName` and `_topic`. The constructor has two parameters that accepts both the name and the topic of the assignment. There is a method called `GetSummary` which returns the name of the student and the topic:
+
+public class Assignment
+{
+ protected string _studentName;
+ private string _topic;
+
+ public Assignment(string studentName, string topic)
+ {
+  _studentName = studentName;
+  _topic = topic;
+ }
+
+ public string GetSummary()
+ {
+  return $"{_studentName} - {_topic}";
+ }
+}
+
+There are two derived classes: `MathAssignment` and `WritingAssignment`. Both are declared as children classes by the use of the `:` and immediately followed by the name of the base class, in this case `Assignment`:
+
+public class MathAssignment : Assignment
+
+and
+
+public class WritingAssignment : Assignment
+
+Both of these classes have their own member variables, however, each have different name and purpose. As an example, the `MathAssignment` class has a `_textbookSection` and `_problems` variables, whereas `WritingAssignment` has only one: `_title`. Although they both share the same parameters in their constructors which are the `studentName` and `topic`. Differing only by the additional variables that are specific to each one of them:
+
+
+public MathAssignment(string studentName, string topic, string textbookSection, string problems) : base(studentName, topic)
+{
+ _textbookSection = textbookSection;
+ _problems = problems;
+}
+
+public WritingAssignment(string studentName, string topic, string title) : base(studentName, topic)
+{
+ _title = title;
+}
+
+
+Thus by creating an instance of the `MathAssignment` we automatically create and instance of the object `Assignment`:
+
+MathAssignment math = new MathAssignment("Student's Name", "Topic of the assignment", "Section Number", "Problem(s)";
+
+Once we display it we can call the method inside of the base class `GetSummary` and the method inside of the `MathAssignment` class, and both will display the information needed:
+
+Console.WriteLine(math.GetSummary());
+Console.WriteLine(math.GetHomeworkList());
+
+The desired output should be:
+
+Student's Name - Topic of the assignment
+Section Number - Problem(s)
