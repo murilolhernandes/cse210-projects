@@ -4,11 +4,12 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Console.WriteLine("Hello World! This is the Mindfulness Project.");
+        Console.WriteLine("Hello World! This is the Mindfulness Project.");
+        ListingActivity listing = null;
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("Menu Options:\n  1. Start breathing activity\n  2. Start reflecting activity\n  3. Start listing activity\n  4. Quit");
+            Console.WriteLine("Menu Options:\n  1. Start breathing activity\n  2. Start reflecting activity\n  3. Start listing activity\n  4. See listed items\n  5. Quit");
             Console.Write("Select a choice from the menu: ");
             string input = Console.ReadLine();
             Console.Clear();
@@ -24,10 +25,26 @@ class Program
             }
             else if (input == "3")
             {
-                ListingActivity listing = new ListingActivity();
+                if (listing == null)
+                {
+                    listing = new ListingActivity();
+                }
                 listing.Run();
             }
             else if (input == "4")
+            {
+                if (listing != null)
+                {
+                    listing.DisplayListedItems();
+                }
+                else
+                {
+                    Console.WriteLine("No items have been listed yet. Please start the listing activity first.");
+                    Console.WriteLine("Press enter to return to the menu.");
+                    Console.ReadLine();
+                }
+            }
+            else if (input == "5")
             {
                 break;
             }

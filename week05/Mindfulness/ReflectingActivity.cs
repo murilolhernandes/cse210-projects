@@ -17,7 +17,7 @@ public class ReflectingActivity : Activity
     DisplayEndingMessage();
   }
 
-  public string GetRandomPrompt()
+  private string GetRandomPrompt()
   {
     _prompts.Add("Think of a time when you stood up for someone else."); 
     _prompts.Add("Think of a time when you did something really difficult."); 
@@ -26,7 +26,7 @@ public class ReflectingActivity : Activity
     return GetRandom(_prompts);
   }
 
-  public string GetRandomQuestion()
+  private string GetRandomQuestion()
   {
     _questions.Add("Why was this experience meaningful to you?"); 
     _questions.Add("Have you ever done anything like this before?");
@@ -40,7 +40,7 @@ public class ReflectingActivity : Activity
     return GetRandom(_questions);
   }
 
-  public void DisplayPrompt()
+  private void DisplayPrompt()
   {
     Console.WriteLine("\nConsider the following prompt:\n");
     Console.WriteLine($"--- {GetRandomPrompt()} ---\n");
@@ -48,7 +48,7 @@ public class ReflectingActivity : Activity
     Console.ReadLine();
   }
 
-  public void DisplayQuestions()
+  private void DisplayQuestions()
   {
     Console.WriteLine("Now ponder on each of the following questions as they related to this experience.");
     Console.Write("You may begin in: ");

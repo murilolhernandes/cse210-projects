@@ -2,6 +2,7 @@ public class ListingActivity : Activity
 {
   private int _count;
   private List<string> _prompts = new List<string>();
+  private List<string> _userResponses = new List<string>();
   
   public ListingActivity()
   {
@@ -12,11 +13,11 @@ public class ListingActivity : Activity
   public void Run()
   {
     DisplayStartingMessage();
-    GetListFromUser();
+    _userResponses = GetListFromUser();
     DisplayEndingMessage();
   }
 
-  public string GetRandomPrompt()
+  private string GetRandomPrompt()
   {
     _prompts.Add("Who are people that you appreciate?");
     _prompts.Add("What are personal strengths of yours?");
@@ -26,7 +27,7 @@ public class ListingActivity : Activity
     return GetRandom(_prompts);
   }
 
-  public List<string> GetListFromUser()
+  private List<string> GetListFromUser()
   {
     List<string> input = new List<string>();
     Console.WriteLine("\nList as many responses you can to the following prompt:");
@@ -45,5 +46,23 @@ public class ListingActivity : Activity
     }
     Console.WriteLine($"You listed {_count} items!");
     return input;
+  }
+
+  public void DisplayListedItems()
+  {
+    Console.WriteLine("Here are the items you listed: ");
+    if (_userResponses.Count == 0)
+    {
+      Console.WriteLine("No items listed yet.");
+    }
+    else 
+    {
+      foreach (string input in _userResponses)
+      {
+        Console.WriteLine($"- {input}");
+      }
+    }
+    Console.WriteLine("Press enter to return to the menu.");
+    Console.ReadLine();
   }
 }

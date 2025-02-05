@@ -9,7 +9,7 @@ public class Activity
 
   }
 
-  public void DisplayStartingMessage()
+  protected void DisplayStartingMessage()
   {
     Console.WriteLine($"Welcome to the {_name} Activity.\n");
     Console.WriteLine($"{_description}\n");
@@ -21,7 +21,7 @@ public class Activity
 
   }
 
-  public void DisplayEndingMessage()
+  protected void DisplayEndingMessage()
   {
     Console.WriteLine();
     Console.WriteLine("Well done!");
@@ -31,7 +31,7 @@ public class Activity
     Thread.Sleep(1000);
   }
 
-  public void ShowSpinner(int seconds)
+  protected void ShowSpinner(int seconds)
   {
     List<string> animationStrings = new List<string> { "\\", "|", "/", "-" };
 
@@ -56,7 +56,7 @@ public class Activity
     Console.CursorVisible = true;
   }
 
-  public void ShowCountDown(int seconds)
+  protected void ShowCountDown(int seconds)
   {
     for (int i = seconds; i > 0; i--)
     {
@@ -69,7 +69,7 @@ public class Activity
     Console.CursorVisible = true;
   }
 
-  public string GetRandom(List<string> list)
+  protected string GetRandom(List<string> list)
   {
     Random random = new Random();
     int index = random.Next(list.Count);
