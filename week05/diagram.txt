@@ -1,0 +1,40 @@
+Activity class - base (parent)
+_description : string - protected
+_topic : string - protected
+_duration : int - protected
+
+DisplayWelcomeMessage() : void - protected
+DisplayEndingMessage() : void - protected
+ShowSpinner() : void - protected
+ShowCountDown() : void - protected
+
+-----------------------------------------------
+
+BreathingActivity class - derived (child)
+
+Run(): void - public
+BreathLoop() : void - private
+
+-------------------------------------------------
+
+ReflectingActivity class - derived
+_prompts : List<string> - private
+_questions : List<string> - private
+
+Run() : void - public
+RandomPrompt() : string - private
+RandomQuestion() : string - private
+DisplayPrompt() : void - private
+DisplayQuestion() : void - private
+
+----------------------------------------------------
+
+ListingActivity class - derived
+_prompts : List<string> - private
+_inputs : List<string> - private
+_count : int - private
+
+RandomPrompt() : string - private
+DisplayPrompt() : void - private
+Run() : void - public
+GetUserList() : List<string> - private

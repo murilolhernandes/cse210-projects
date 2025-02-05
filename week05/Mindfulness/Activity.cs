@@ -18,7 +18,6 @@ public class Activity
     Console.Clear();
     Console.WriteLine("Get Ready...");
     ShowSpinner(5);
-
   }
 
   protected void DisplayEndingMessage()
