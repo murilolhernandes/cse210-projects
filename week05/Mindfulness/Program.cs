@@ -1,3 +1,11 @@
+// As an additional function to my project, I added an option for the user to see all the items they listed in the listing activity.
+// If the list is empty the program will display a message to the user and encourage them to start the listing activity.
+// To accomplish this I added a new method to the ListingActivity class called DisplayListedItems.
+// In order to access the items listed, I created a member variable called listing (see line 13 on this file) that will initialize a new
+// ListingActivity object but its value is set to null, then once the user selects the option to start the Listing Activity the program will
+// set the value of the listing variable to a new ListingActivity object and then when the user chooses to see the listed items the program will
+// call the DisplayListedItems method through the variable listing.
+
 using System;
 
 class Program
