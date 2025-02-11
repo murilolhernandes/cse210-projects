@@ -19,12 +19,10 @@ public class GoalManager : List<Goal>
       {
         CreateGoal();
         DisplayPlayerInfo();
-
       }
       else if (input == "2")
       {
-        // ListGoalNames();
-        // ListGoalDetails();
+        Console.WriteLine("The goals are:");
         foreach (Goal goal in _goals)
         {
           Console.WriteLine($"{_goals.IndexOf(goal) + 1}. {goal.GetDetailsString()}");
@@ -34,7 +32,7 @@ public class GoalManager : List<Goal>
       else if (input == "3")
       {
         SaveGoals();
-
+        DisplayPlayerInfo();
       }
       else if (input == "4")
       {
@@ -127,9 +125,10 @@ public class GoalManager : List<Goal>
     }
     else
     {
-      _score += _goals[index - 1].GetPoints();
       _goals[index - 1].RecordEvent();
+      _score += _goals[index - 1].GetPoints();
       Console.WriteLine($"Congratulations! You have earned {_goals[index - 1].GetPoints()} points!");
+      Console.WriteLine($"You now have {_score} points.");
     }
   }
 
@@ -151,21 +150,62 @@ public class GoalManager : List<Goal>
   {
     Console.Write("What is the filename for the goal file? ");
     string fileName = Path.Combine("..", "..", "..", Console.ReadLine());
-    // string[] lines = System.IO.File.ReadAllLines(fileName);
 
-    if (!File.Exists(fileName))
+    try
+    {
+      using (StreamReader reader = new StreamReader(fileName))
+      {
+        _score = int.Parse(reader.ReadLine());
+
+        string line;
+        while ((line = reader.ReadLine()) != null)
+        {
+          string[] parts = line.Split(",");
+          string goalType = parts[0].Split(":")[0].Trim();
+          string name = parts[0].Split(":")[1].Trim();
+          string description = parts[1].Trim();
+          int points = int.Parse(parts[2].Trim());
+
+          switch (goalType)
+          {
+            case "SimpleGoal":
+              bool isComplete = bool.Parse(parts[3].Trim());
+              SimpleGoal simpleGoal = new SimpleGoal(name, description, points);
+              if (isComplete)
+              {
+                simpleGoal.RecordEvent();
+              }
+              _goals.Add(simpleGoal);
+              break;
+
+            case "EternalGoal":
+              EternalGoal eternalGoal = new EternalGoal(name, description, points);
+              _goals.Add(eternalGoal);
+              break;
+
+            case "ChecklistGoal":
+              int bonus = int.Parse(parts[3].Trim());
+              int target = int.Parse(parts[4].Trim());
+              int amountCompleted = int.Parse(parts[5].Trim());
+              ChecklistGoal checklistGoal = new ChecklistGoal(name, description, points, target, bonus);
+              checklistGoal.SetAmountCompleted(amountCompleted);
+              _goals.Add(checklistGoal);
+              break;
+
+            default:
+              Console.WriteLine("Unknown goal type.");
+              break;
+          }
+        }
+      }
+    }
+    catch (FileNotFoundException)
     {
       Console.WriteLine("File is not found. Please try again.");
     }
-    else
+    catch (Exception ex)
     {
-      Console.WriteLine("It works.");
-      // foreach (string line in lines)
-      // {
-      //   string[] parts = line.Split(",");
-      //   // string 
-      // }
-      // LoadFromFile(fileName);
+      Console.WriteLine($"An error occurred: {ex.Message}");
     }
   }
 }

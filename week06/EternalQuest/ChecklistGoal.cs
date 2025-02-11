@@ -12,13 +12,16 @@ public class ChecklistGoal : Goal
   public override void RecordEvent()
   {
     _amountCompleted++;
+    if (IsComplete())
+    {
+      _points += _bonus;
+    }
   }
 
   public override bool IsComplete()
   {
-    if (_amountCompleted == _target)
+    if (_amountCompleted >= _target)
     {
-      _points += _bonus;
       return true;
     }
     return false;
@@ -39,5 +42,10 @@ public class ChecklistGoal : Goal
     {
       return $"[ ] {_shortName} ({_description}) -- Currently completed: {_amountCompleted}/{_target}";
     }
+  }
+
+  public int SetAmountCompleted(int amountCompleted)
+  {
+    return _amountCompleted = amountCompleted;
   }
 }
