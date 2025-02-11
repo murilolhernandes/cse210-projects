@@ -1,0 +1,31 @@
+The definition of the word "Polymorphism" is to take or have multiple forms. In programming, we see it more often as a derived class changes the behavior of an inherited method from their base class.
+
+This is called "method overriding." To override a method, you first need to declare the method inside of the base class as "virtual" or "abstract". Then all you need to do differently inside of the derived class is to add "override" and then the name of the method you want to override its behavior.
+
+This is used when one of the derived classes needs a different parameter to be passed or any other behavior that differs from the other derived classes, giving freedom to this child class to modify and adapt the method to their need.
+
+A quick example I'll share comes from my weekly assignment - Goals:
+
+I made the base class an abstract class:
+
+`public abstract class Goal
+{
+  public abstract string GetStringRepresentation();
+}`
+
+Then the derived class:
+
+`public class ChecklistGoal : Goal
+{
+  public override string GetStringRepresentation()
+  {
+    if (IsComplete())
+    {
+      return $"[X] {_shortName} ({_description}) -- Currently completed: {_amountCompleted}/{_target}";
+    }
+    else
+    {
+      return $"[X] {_shortName} ({_description}) -- Currently completed: {_amountCompleted}/{_target}";
+    }
+  }
+}`
