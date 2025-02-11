@@ -13,44 +13,46 @@ public class GoalManager : List<Goal>
   {
     while (true)
     {
+      DisplayPlayerInfo();
+
       Console.Write("Menu Options:\n  1. Create New Goal\n  2. List Goals\n  3. Save Goals\n  4. Load Goals\n  5. Record Event\n  6. Quit\nSelect a choice from the menu: ");
       string input = Console.ReadLine();
-      if (input == "1")
+
+      switch (input)
       {
-        CreateGoal();
-        DisplayPlayerInfo();
-      }
-      else if (input == "2")
-      {
-        Console.WriteLine("The goals are:");
-        foreach (Goal goal in _goals)
-        {
-          Console.WriteLine($"{_goals.IndexOf(goal) + 1}. {goal.GetDetailsString()}");
-        }
-        DisplayPlayerInfo();
-      }
-      else if (input == "3")
-      {
-        SaveGoals();
-        DisplayPlayerInfo();
-      }
-      else if (input == "4")
-      {
-        LoadGoals();
-        DisplayPlayerInfo();
-      }
-      else if (input == "5")
-      {
-        RecordEvent();
-        DisplayPlayerInfo();
-      }
-      else if (input == "6")
-      {
-        break;
-      }
-      else
-      {
-        Console.WriteLine("Please select a valid option.");
+        case "1":
+          CreateGoal();
+          Repeat("create another goal", CreateGoal);
+          break;
+      
+        case "2":
+          Console.WriteLine("The goals are:");
+          foreach (Goal goal in _goals)
+          {
+            Console.WriteLine($"{_goals.IndexOf(goal) + 1}. {goal.GetDetailsString()}");
+          }
+          break;
+      
+        case "3":
+      
+          SaveGoals();
+          break;
+      
+        case "4":
+          LoadGoals();
+          break;
+      
+        case "5":
+          RecordEvent();
+          Repeat("record another event", RecordEvent);
+          break;
+      
+        case "6":
+          return;
+
+        default:
+          Console.WriteLine("Please select a valid option.");
+          break;
       }
     }
   }
@@ -88,28 +90,31 @@ public class GoalManager : List<Goal>
     string description = Console.ReadLine();
     Console.Write("What is the amount of points associated with this goal? ");
     int points = int.Parse(Console.ReadLine());
-    if (type == "1")
+
+    switch (type)
     {
-      SimpleGoal simpleGoal = new SimpleGoal(name, description, points);
-      _goals.Add(simpleGoal);
-    }
-    else if (type == "2")
-    {
-      EternalGoal eternalGoal = new EternalGoal(name, description, points);
-      _goals.Add(eternalGoal);
-    }
-    else if (type == "3")
-    {
-      Console.Write("How many times does this goal need to be accomplished for a bonus? ");
-      int target = int.Parse(Console.ReadLine());
-      Console.Write("What is the bonus for accomplishing it that many times? ");
-      int bonus = int.Parse(Console.ReadLine());
-      ChecklistGoal checklistGoal = new ChecklistGoal(name, description, points, target, bonus);
-      _goals.Add(checklistGoal);
-    }
-    else
-    {
-      Console.WriteLine("Please select a valid option.");
+      case "1":
+        SimpleGoal simpleGoal = new SimpleGoal(name, description, points);
+        _goals.Add(simpleGoal);
+        break;
+    
+      case "2":
+        EternalGoal eternalGoal = new EternalGoal(name, description, points);
+        _goals.Add(eternalGoal);
+        break;
+
+      case "3":
+        Console.Write("How many times does this goal need to be accomplished for a bonus? ");
+        int target = int.Parse(Console.ReadLine());
+        Console.Write("What is the bonus for accomplishing it that many times? ");
+        int bonus = int.Parse(Console.ReadLine());
+        ChecklistGoal checklistGoal = new ChecklistGoal(name, description, points, target, bonus);
+        _goals.Add(checklistGoal);
+        break;
+
+      default:
+        Console.WriteLine("Please select a valid option.");
+        break;
     }
   }
 
@@ -155,7 +160,7 @@ public class GoalManager : List<Goal>
     {
       using (StreamReader reader = new StreamReader(fileName))
       {
-        _score = int.Parse(reader.ReadLine());
+        _score += int.Parse(reader.ReadLine());
 
         string line;
         while ((line = reader.ReadLine()) != null)
@@ -206,6 +211,27 @@ public class GoalManager : List<Goal>
     catch (Exception ex)
     {
       Console.WriteLine($"An error occurred: {ex.Message}");
+    }
+  }
+
+  public void Repeat(string message, Action action)
+  {
+    Console.Write($"\nWould you like to {message}? (Y or N) ");
+    string answer = Console.ReadLine().ToUpper();
+    switch (answer)
+    {
+      case "Y":
+        action();
+        Repeat(message, action);
+        break;
+      
+      case "N":
+        break;
+
+      default:
+        Console.WriteLine("Please answer Y or N.");
+        Repeat(message, action);
+        break;
     }
   }
 }
