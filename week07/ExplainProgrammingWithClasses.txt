@@ -1,0 +1,33 @@
+Abstraction:
+
+Abstraction is about simplifying complex systems by separating the program into smaller classes with their own essential properties and behaviors while hiding unnecessary details.
+
+I created classes that represented a journal entry, the journal itself, and a random prompt generator. Each class contained only essential local and member variables making it easy to debug since I knew exactly where to look when I encountered a bug.
+
+By using abstraction, I can easily extend the Journal Program to include additional features, like tagging entries or adding multimedia content, while maintaining the easiness of debugging each class.
+
+Encapsulation:
+
+Encapsulation is the practice of restricting access to class components: changing local variables and methods from "public" to "private". This is widely used in programming to restrict access so other classes can't change the value of variables, protecting them by declaring them as "private".
+
+In the Scripture Memorizer program, I declared all local variables to be private, and if any other class needed to access their values they could call the Get methods. By doing so, other classes could view and use the value of a variable while they couldn't change its value. Only necessary variables and methods were exposed.
+
+Encapsulation allows me to modify the value I receive from the getters while not replacing the actual values. This makes it easier to add features like different levels of difficulty or even adding multiple scriptures.
+
+Inheritance:
+
+Inheritance is the principle of a parent class and a child class that inherits their parent's traits, or their variables and behaviors while allowing for additional customization or extension.
+
+In this program, I created a base class (parent class) called "Activity", which has a constructor that accepts no parameters, but each of the derived classes (child class) has defined constructors with the variables from the base class. They also inherited the methods from the base class, however, the methods will use the values of each derived class, allowing the derived class to display and store the information pertaining to each class.
+
+By using inheritance, I can easily add new activities by creating new derived classes without changing any of the existing code. I can reuse code and simplify maintenance as the common functionality is centralized in the base class.
+
+Polymorphism:
+
+Polymorphism allows objects to be treated as instances of their parent class, allowing a single interface to represent different data types. Thus the meaning of "polymorphism".
+
+In my program, I made the base class an "abstract" class so each derived class could modify the methods marked with an "abstract" property, so each could use the methods to fit their own needs.
+
+This principle enables me to introduce new goal types or modify existing ones without having to change the code that processes each goal in the base class. The program becomes more scalable and easier to extend.
+
+By using these principles, my programs have become more modular, maintainable, adaptable, and easier to read, understand, and debug. This ensures they can evolve while using best practices.
